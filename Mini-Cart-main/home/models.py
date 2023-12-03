@@ -48,3 +48,5 @@ class Blogs(models.Model):
     title=models.CharField(max_length=50)
     description=models.CharField( max_length=150)
     image=models.ImageField(upload_to='blogs')
+    def __str__(self) :
+        return f"{self.username}"

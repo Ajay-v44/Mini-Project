@@ -210,18 +210,26 @@ def delete_order(request, id):
     if query:
         messages.info(request, "item deleted")
     return redirect(account)
+
+
 def create_blog(request):
-    if request.method=="POST":
-        title=request.POST['title']
-        description=request.POST['description']
-        image=request.FILES.get('image')
-        if title and description and image !="":
-            Blogs.objects.create(username=request.user,title=title,description=description,image=image)
-            messages.info(request,"Blog Created")
+    if request.method == "POST":
+        title = request.POST['title']
+        description = request.POST['description']
+        print("val", request.FILES)
+        image = request.FILES['images']
+
+        if title and description and image != "":
+            Blogs.objects.create(
+                username=request.user, title=title, description=description, image=image)
+            messages.info(request, "Blog Created")
             return redirect(my_blogs)
         else:
-            messages.info(request,"Sorry null vales are not allowed")
+            messages.info(request, "Sorry null vales are not allowed")
             return redirect(create_blog)
-    return render(request,'createblog.html')
+    return render(request, 'createblog.html')
+
+
 def my_blogs(request):
-    return render (request,'myblogs.html')
+    query=Blogs.objects.filter(username_id=request.user)
+    return render(request, 'myblogs.html',{"query":query})
