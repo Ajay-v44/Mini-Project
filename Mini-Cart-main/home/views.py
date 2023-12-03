@@ -187,7 +187,9 @@ def cancelled_view(request):
     query = DeliverProducts.objects.filter(
         username=request.user).filter(Status="canceled")
     return render(request, 'cancled.html', {"query": query})
-
+def delivered_order(request):
+    query=DeliverProducts.objects.filter(username=request.user).filter(Status="delivered")
+    return render(request,'delivered.html',{"query":query})
 
 def cancel_order(request, id):
     query = DeliverProducts.objects.filter(id=id).update(Status="canceled")

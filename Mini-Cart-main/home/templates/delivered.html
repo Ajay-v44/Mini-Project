@@ -1,0 +1,47 @@
+{% extends "accounts.html" %}
+{% block content2 %}
+
+<table class="table table-dark">
+   {% if query %}
+   <thead>
+    <tr>
+        <th scope="col">No of items</th>
+        <th scope="col">Product Image</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">
+        Order At
+        </th>
+        <th scope="col">
+          Quantity
+        </th>
+        <th scope="col">Total Amount</th>
+        <th scope="col">Status</th>
+        <th scope="col "><span class="text-danger">Delete</span></th>
+      </tr>
+</thead>
+   {% endif %}
+    <tbody>
+      {% for val in query %}
+        <tr class="table-success">
+          <th scope="row">{{ forloop.counter }}</th>
+          <td class=""> <img src="{{ val.product.pro_image.url }}" class="img-fluid rounded-start" alt="..."  style="height:150px;width: 150px;"/></td>
+          <td>{{ val.product.pro_name }}</td>
+          <td>
+           {{ val.orderd_at }}
+          </td>
+          <td>
+            {{ val.quantity }}
+          </td>
+          <td>
+            {{ val.total_amount }}
+          </td>
+          <td>
+            {{ val.Status }}
+          </td>
+          <td><a href="{% url "deleteorder" val.id %}" class="btn btn-sm btn-danger">Delete</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content2 %}
