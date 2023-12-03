@@ -14,7 +14,7 @@ def index(request):
         category="smartphone").filter(pro_rating__gte=4.3)[:8]
     laptop = Products.objects.filter(
         category="laptops").filter(pro_rating__gt=4)[:8]
-    blog = Blogs.objects.all().order_by('?')[:8]
+    blog = Blogs.objects.all().order_by('?')[:4]
     return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog})
 
 
@@ -245,6 +245,8 @@ def edit_blogs(request, id):
         if 'images' in request.FILES:
           image = request.FILES['images']
           print(image)
+        else:
+            image=None
        
 
         if title and description != "":
@@ -258,10 +260,14 @@ def edit_blogs(request, id):
                 messages.info(request, "Blog Updated")
                 return redirect(my_blogs)
             else:
-                Blogs.objects.filter(
-                    id=id).update(title=title, description=description)
-                messages.info(request, "Blog Updated")
-                return redirect(my_blogs)
+                 query2=Blogs.objects.get(id=id)
+                 query2.title=title
+                 query2.description=description
+                 
+                 query2.save()
+               
+                 messages.info(request, "Blog Updated")
+                 return redirect(my_blogs)
 
         else:
             messages.info(request, "Sorry null vales are not allowed")
