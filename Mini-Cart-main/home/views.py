@@ -14,7 +14,8 @@ def index(request):
         category="smartphone").filter(pro_rating__gte=4.3)[:8]
     laptop = Products.objects.filter(
         category="laptops").filter(pro_rating__gt=4)[:8]
-    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop})
+    blog = Blogs.objects.all().order_by('?')[:8]
+    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog})
 
 
 def register(request):
@@ -212,11 +213,12 @@ def delete_order(request, id):
     return redirect(account)
 
 
+@login_required(login_url="/login")
 def create_blog(request):
     if request.method == "POST":
         title = request.POST['title']
         description = request.POST['description']
-        print("val", request.FILES)
+
         image = request.FILES['images']
 
         if title and description and image != "":
@@ -231,5 +233,38 @@ def create_blog(request):
 
 
 def my_blogs(request):
-    query=Blogs.objects.filter(username_id=request.user)
-    return render(request, 'myblogs.html',{"query":query})
+    query = Blogs.objects.filter(username_id=request.user)
+    return render(request, 'myblogs.html', {"query": query})
+
+
+def edit_blogs(request, id):
+    if request.method == "POST":
+        title = request.POST['title']
+        description = request.POST['description']
+
+        if 'images' in request.FILES:
+          image = request.FILES['images']
+          print(image)
+       
+
+        if title and description != "":
+            if image:
+                query2=Blogs.objects.get(id=id)
+                query2.title=title
+                query2.description=description
+                query2.image=image
+                query2.save()
+               
+                messages.info(request, "Blog Updated")
+                return redirect(my_blogs)
+            else:
+                Blogs.objects.filter(
+                    id=id).update(title=title, description=description)
+                messages.info(request, "Blog Updated")
+                return redirect(my_blogs)
+
+        else:
+            messages.info(request, "Sorry null vales are not allowed")
+            return redirect(create_blog)
+    query = Blogs.objects.filter(username_id=request.user).filter(id=id)
+    return render(request, 'editblog.html', {"query": query})

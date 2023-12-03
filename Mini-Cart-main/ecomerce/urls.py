@@ -37,6 +37,7 @@ urlpatterns = [
     path('delivered/', delivered_order, name="delivered"),
     path('createblogs/', create_blog, name='createblogs'),
     path('myblogs/',my_blogs,name='myblogs'),
+    path('editblogs/<int:id>',edit_blogs,name='editblogs')
 
 ]
 if settings.DEBUG:

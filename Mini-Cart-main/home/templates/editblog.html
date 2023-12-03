@@ -1,0 +1,44 @@
+{% extends "accounts.html" %}
+{% block content2 %}
+<div class="container mt-3">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url "createblogs" %}">Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'myblogs' %}">My Blogs</a>
+        </li>
+       
+      </ul>
+   {% block content3 %}
+   
+   <form action="" method="post" class="p-5 rounded shadow-lg mt-5" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for val in query %}
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="" required name="title" value="{{val.title}}">
+        <label for="floatingInput">Title</label>
+      </div>
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" required name="description" >
+            {{val.description}}
+        </textarea>
+        <label for="floatingTextarea2">About Blog</label>
+      </div>
+      <img src="{{val.image.url}}" alt="" class="w-25 rounded ">
+      <div class="input-group mb-3">
+      
+        <input type="file" class="form-control" id="inputGroupFile02"  name="images" >
+
+        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto">
+      
+        <button class="btn btn-warning" type="submit">Update</button>
+      </div>
+      {% endfor %}
+</form>
+   {% endblock content3 %}
+</div>
+
+{% endblock content2 %}

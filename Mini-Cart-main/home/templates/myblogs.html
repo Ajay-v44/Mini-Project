@@ -15,8 +15,14 @@
           By  <span class="fw-bold text-primary text-capitalize">{{ val.username.get_username }} </span>
           <p class="card-text"><small class="text-body-secondary text-capitalize" > Posted On {{val.postedate}}</small></p>
         </div>
+       <div class="d-flex justify-content-evenly">
+        <a href="{% url "editblogs" val.id %}" class="btn btn-warning">Update</a>
+        <a href="" class="btn btn-danger">Delete</a>
+       </div>
       </div>
+     
     </div>
+   
   </div>
    {% endfor %}
 </div>

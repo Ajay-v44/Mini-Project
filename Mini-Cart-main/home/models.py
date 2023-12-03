@@ -47,6 +47,6 @@ class Blogs(models.Model):
     postedate=models.DateTimeField( auto_now_add=True)
     title=models.CharField(max_length=50)
     description=models.CharField( max_length=150)
-    image=models.ImageField(upload_to='blogs')
+    image=models.ImageField(upload_to='uploads')
     def __str__(self) :
-        return f"{self.username}"
+        return f"{self.title}"
