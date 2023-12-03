@@ -231,12 +231,12 @@ def create_blog(request):
             return redirect(create_blog)
     return render(request, 'createblog.html')
 
-
+@login_required(login_url="/login")
 def my_blogs(request):
     query = Blogs.objects.filter(username_id=request.user)
     return render(request, 'myblogs.html', {"query": query})
 
-
+@login_required(login_url="/login")
 def edit_blogs(request, id):
     if request.method == "POST":
         title = request.POST['title']
@@ -268,3 +268,7 @@ def edit_blogs(request, id):
             return redirect(create_blog)
     query = Blogs.objects.filter(username_id=request.user).filter(id=id)
     return render(request, 'editblog.html', {"query": query})
+@login_required(login_url="/login")
+def delete_blog(request,id):
+    Blogs.objects.filter(id=id).delete()
+    return redirect(my_blogs)

@@ -17,7 +17,7 @@
         </div>
        <div class="d-flex justify-content-evenly">
         <a href="{% url "editblogs" val.id %}" class="btn btn-warning">Update</a>
-        <a href="" class="btn btn-danger">Delete</a>
+        <a href="{% url "deleteblog" val.id %}" class="btn btn-danger">Delete</a>
        </div>
       </div>
      
