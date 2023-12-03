@@ -1,0 +1,38 @@
+{% extends "accounts.html" %}
+{% block content2 %}
+<div class="container mt-3">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Blogs</a>
+        </li>
+       
+      </ul>
+   {% block content3 %}
+   
+   <form action="" method="post" class="p-5 rounded shadow-lg mt-5">
+    {% csrf_token %}
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Title</label>
+      </div>
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Comments</label>
+      </div>
+      <div class="input-group mb-3">
+        <input type="file" class="form-control" id="inputGroupFile02">
+        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto">
+      
+        <button class="btn btn-primary" type="submit">create</button>
+      </div>
+
+</form>
+   {% endblock content3 %}
+</div>
+
+{% endblock content2 %}

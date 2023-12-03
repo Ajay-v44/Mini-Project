@@ -210,3 +210,7 @@ def delete_order(request, id):
     if query:
         messages.info(request, "item deleted")
     return redirect(account)
+def create_blog(request):
+    return render(request,'createblog.html')
+def my_blogs(request):
+    return render (request,'myblogs.html')

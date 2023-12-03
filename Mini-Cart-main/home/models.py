@@ -42,3 +42,9 @@ class DeliverProducts(models.Model):
     deliveron=models.DateField( default=datetime.now)
     def __str__(self) :
         return f"{self.username}"
+class Blogs(models.Model):
+    username=models.ForeignKey(User, on_delete=models.CASCADE)
+    postedate=models.DateTimeField( auto_now_add=True)
+    title=models.CharField(max_length=50)
+    description=models.CharField( max_length=150)
+    image=models.ImageField(upload_to='blogs')
