@@ -38,14 +38,25 @@
           </td>
           <td>
             <a href="#" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2" style="--bs-focus-ring-color: rgba(var(--bs-success-rgb), .25)">
-              {{ val.Status }}
+              {% if val.Status == "pending" %}
+              <span class="text-warning">{{ val.Status }}</span>
+              {% elif val.Status == "dispatched" %}
+              <span class="text-success">{{ val.Status }}</span>
+              {% endif %}
             </a>
            
           </td>
           <td>
            {{val.deliveron}}
           </td>
-          <td><a href="{% url " cancelorder" val.id  %}" class="btn btn-sm btn-danger">Cancel</a></td>
+          <td>
+
+            {% if val.Status == "dispatched" %}
+            <a href="#" class="btn btn-sm btn-danger" disabled >No Cancel Available</a>
+            {% else %}
+            <a href="{% url " cancelorder" val.id  %}" class="btn btn-sm btn-danger">Cancel</a>
+            {% endif %}
+          </td>
         </tr>
       {% endfor %}
     </tbody>

@@ -4,14 +4,17 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
+
 # Create your views here.
 
 
-
 def index(request):
-    mobiles=Products.objects.filter(category="smartphone").filter(pro_rating__gte=4.3)[:8]
-    laptop=Products.objects.filter(category="laptops").filter(pro_rating__gt=4)[:8]
-    return render(request, 'index.html',{"mobiles":mobiles,"laptop":laptop})
+    mobiles = Products.objects.filter(
+        category="smartphone").filter(pro_rating__gte=4.3)[:8]
+    laptop = Products.objects.filter(
+        category="laptops").filter(pro_rating__gt=4)[:8]
+    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop})
 
 
 def register(request):
@@ -129,7 +132,7 @@ def logout_user(request):
 
 
 def product_page(request, category):
-    query = Products.objects.filter(category=category)
+    query = Products.objects.filter(category=category).order_by('?')
     return render(request, 'product_page.html', {"query": query})
 
 
@@ -160,7 +163,7 @@ def billing(request, id):
 
     if request.method == "POST":
         quantity = request.POST.get('quantity')
-        deliveron=request.POST['deliveron']
+        deliveron = request.POST['deliveron']
         query = get_object_or_404(Products, id=id)
 
         proprice = query.pro_price
@@ -168,9 +171,9 @@ def billing(request, id):
         totalamount = int(proprice)*int(quantity)
 
         query2 = DeliverProducts.objects.create(username=request.user, product=query, quantity=int(
-            quantity), paymentmod="COD", total_amount=totalamount,deliveron=deliveron)
+            quantity), paymentmod="COD", total_amount=totalamount, deliveron=deliveron)
         messages.info(
-            request, "Succesfully Ordered .You will receive product within 7 days")
+            request, "Succesfully Ordered .You will receive product on selected date")
         return redirect(ordered_products)
     return render(request, 'billing.html')
 
@@ -178,7 +181,7 @@ def billing(request, id):
 @login_required(login_url='/login')
 def ordered_products(request):
     query = DeliverProducts.objects.filter(
-        username=request.user).filter(Status="pending")
+        username=request.user).filter(Q(Status="pending") | Q(Status="dispatched"))
 
     return render(request, 'orderedproducts.html', {"query": query})
 
@@ -187,16 +190,21 @@ def cancelled_view(request):
     query = DeliverProducts.objects.filter(
         username=request.user).filter(Status="canceled")
     return render(request, 'cancled.html', {"query": query})
+
+
 def delivered_order(request):
-    query=DeliverProducts.objects.filter(username=request.user).filter(Status="delivered")
-    return render(request,'delivered.html',{"query":query})
+    query = DeliverProducts.objects.filter(
+        username=request.user).filter(Status="delivered")
+    return render(request, 'delivered.html', {"query": query})
+
 
 def cancel_order(request, id):
     query = DeliverProducts.objects.filter(id=id).update(Status="canceled")
     if query:
         messages.info(request, "item canceled")
         return redirect(cancelled_view)
-    
+
+
 def delete_order(request, id):
     query = DeliverProducts.objects.get(id=id).delete()
     if query:
