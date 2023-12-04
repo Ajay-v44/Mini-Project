@@ -16,15 +16,19 @@ def index(request):
         category="laptops").filter(pro_rating__gt=4)[:8]
     blog = Blogs.objects.all().order_by('?')[:4]
     review = Reviews.objects.all().order_by('?')
-    if request.method=="POST":
-        name=request.POST['name']
-        email=request.POST['email']
-        phone=request.POST['phone']
-        message=request.POST['message']
-        if name and email and phone and message !="":
-            Contactus.objects.create(name=name,email=email,phone=phone,message=message)
-            message.info(request,'Thankyou for your feedback')
-
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        message = request.POST['message']
+        if name and email and phone and message != "":
+            Contactus.objects.create(
+                name=name, email=email, phone=phone, message=message)
+            messages.info(request, 'Thankyou for your feedback')
+            return redirect(index)
+        else:
+            messages.info(request, 'Sorry Null values are not allowed')
+            return redirect(index)
 
     return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog, "review": review})
 

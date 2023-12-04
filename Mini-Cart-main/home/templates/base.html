@@ -41,11 +41,11 @@
                 <a class="nav-link" href="{% url "product" "laptops" %}" >Laptops</a>
               </li>
               <li class="nav-item dropdown btn-group">
-                <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More info</a>
-                <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
-                  <a class="dropdown-item">Contact</a>
-                  <a class="dropdown-item">Billing adress</a>
-                  <a class="dropdown-item">Discounts</a>
+                <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Products</a>
+                <div class="dropdown-menu dropdown bg-dark " aria-labelledby="dropdownMenu1">
+                  <a class="text-light">Smart Watch</a>
+                  <a class=""></a>
+                  <a class=""></a>
                 </div>
               </li>
               {% if request.user.is_authenticated %}
@@ -66,7 +66,7 @@
               {% endif %}
             </ul>
             <form class="form-inline waves-effect waves-light">
-              <input class="form-control" type="text" placeholder="Search" />
+               <input class="fs-5 font-monospace p-2" type="text" placeholder="Search" />
             </form>
           </div>
         </div>
