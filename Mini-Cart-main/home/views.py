@@ -348,8 +348,12 @@ def myaddress(request):
 
 
 def search_items(request):
-    if request.method == "GET":
-        name = request.GET.get('name')
-        query = Products.objects.filter(Q(pro_name__icontains=name) | Q(pro_desc__icontains=name) | Q(
-            pro_brand__icontains=name) | Q(category__icontains=name) | Q(pro_price__icontains=name))
-        return render(request, 'search.html', {"query": query})
+   try:
+        if request.method == "GET":
+            name = request.GET.get('name')
+            query = Products.objects.filter(Q(pro_name__icontains=name) | Q(pro_desc__icontains=name) | Q(
+                pro_brand__icontains=name) | Q(category__icontains=name) | Q(pro_price__icontains=name))
+            return render(request, 'search.html', {"query": query})
+   except Exception as e:
+        print(f"An error occurred: {e}")
+        return redirect(index)
