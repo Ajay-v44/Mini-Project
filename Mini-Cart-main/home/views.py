@@ -15,7 +15,8 @@ def index(request):
     laptop = Products.objects.filter(
         category="laptops").filter(pro_rating__gt=4)[:8]
     blog = Blogs.objects.all().order_by('?')[:4]
-    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog})
+    review=Reviews.objects.all().order_by('?')
+    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog,"review":review})
 
 
 def register(request):
@@ -278,3 +279,15 @@ def edit_blogs(request, id):
 def delete_blog(request,id):
     Blogs.objects.filter(id=id).delete()
     return redirect(my_blogs)
+@login_required(login_url='/login')
+def add_review(request):
+   
+    if request.method=="POST":
+      
+        comment=request.POST['comment']
+        if  comment !="":
+            Reviews.objects.create(username=request.user,review=comment)
+            return redirect(index)
+def all_blogs(request):
+    blog=Blogs.objects.all().order_by('?')
+    return render (request,'allblogs.html',{'blog':blog})

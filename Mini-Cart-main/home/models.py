@@ -54,3 +54,5 @@ class Reviews(models.Model):
     username=models.ForeignKey(User, on_delete=models.CASCADE)
     review=models.TextField()
     postedon=models.DateField(  auto_now_add=True)
+    def __str__(self) :
+        return f"{self.review}"

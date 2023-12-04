@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="div-blogs ">
+    <div class="container pt-3">
+     <div class="d-flex align-items-center justify-content-evenly p-3"> <h1 class="popular " >Blogs</h1> <a href="{% url "createblogs" %}" class="btn btn-secondary"> CreateBlog<i class="bi bi-pencil-square text-danger px-3"></i></a></div>
+    <div class=" row row-cols-1 row-cols-md-2 g-4 ">
+      
+     {% for val in  blog %}
+
+     <div class="card mb-3 shadow border-warning mt-5 p-3 mx-5" style="width: 540px;height: 300px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{val.image.url}}" class="img-thumbnailrounded-start w-75" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title text-capitalize">{{val.title}}</h5>
+            <p class="card-text h-50 lh-base">{{val.description}}</p>
+            By  <span class="fw-bold text-primary text-capitalize">{{ val.username.get_username }} </span>
+            <p class="card-text"><small class="text-body-secondary text-capitalize" > Posted On {{val.postedate}}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+      {% endfor %}
+   
+
+
+    </div>
+  </div>
+  </div>
+
+{% endblock content %}

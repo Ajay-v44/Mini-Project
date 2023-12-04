@@ -36,9 +36,11 @@ urlpatterns = [
     path('deleteorder/<int:id>', delete_order, name='deleteorder'),
     path('delivered/', delivered_order, name="delivered"),
     path('createblogs/', create_blog, name='createblogs'),
-    path('myblogs/',my_blogs,name='myblogs'),
-    path('editblogs/<int:id>',edit_blogs,name='editblogs'),
-    path('deleteblog/<int:id>',delete_blog,name='deleteblog'),
+    path('myblogs/', my_blogs, name='myblogs'),
+    path('editblogs/<int:id>', edit_blogs, name='editblogs'),
+    path('deleteblog/<int:id>', delete_blog, name='deleteblog'),
+    path('addreview/', add_review, name='addreview'),
+    path('allblogs/',all_blogs,name='allblogs')
 
 ]
 if settings.DEBUG:
