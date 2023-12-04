@@ -42,6 +42,7 @@ urlpatterns = [
     path('addreview/', add_review, name='addreview'),
     path('allblogs/', all_blogs, name='allblogs'),
     path('updatedelivery/',update_address,name='updatedelivery')
+    
 
 ]
 if settings.DEBUG:

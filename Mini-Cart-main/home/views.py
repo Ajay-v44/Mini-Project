@@ -294,5 +294,29 @@ def all_blogs(request):
 
 @login_required(login_url='/login')
 def update_address(request):
+
+    if request.method=="POST":
+        
+            mob = request.POST['mob']
+            alt_mob = request.POST['altermob']
+            pincode = request.POST['pincode']
+            address = request.POST.get('address')
+            state = request.POST.get('state')
+            country = request.POST.get('country')
+            dt=request.POST.get('dt')
+            
+            DeliveryAddress.objects.filter(username_id=request.user).update( mobile=mob,
+                        altmob=alt_mob,
+                        pincode=pincode,
+                        address=address,
+                        dtype=dt,
+                        state=state,
+                        country=country)
+            messages.info(request,'Details Updated Successfully')
+           
+                
+            
+           
     query=DeliveryAddress.objects.filter(username_id=request.user)
+
     return render(request,'updateadd.html',{"query":query})

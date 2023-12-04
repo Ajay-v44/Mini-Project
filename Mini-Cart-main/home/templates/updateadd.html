@@ -13,7 +13,7 @@
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
-                  <h3 class="mb-5 text-uppercase">Delivery Address</h3>
+                  <h3 class="mb-5 text-uppercase">Update Delivery Address</h3>
                   {% for message in messages %}
                     <div class="alert alert-danger" role="alert">{{ message }}</div>
                   {% endfor %}
@@ -22,14 +22,14 @@
                     {% for val in query %}
                     {% csrf_token %}
                     <div class="row">
-                        
+
                         <div class="col-lg-6 bg-dark d-flex justify-content-evenly align-items-center mt-5" style="height: 50px;">
                             <label class="form-label text-light " for="form3Example1m1">Delivery Type :</label>
-                            <label class="form-label text-light " for="form3Example1m1">Selected :{{val.dtype}}</label>
-                            <input type="radio" class="btn-check text-dark " name="dt" id="option5" autocomplete="off"   value="office"/>
+                            
+                            <input type="radio" class="btn-check text-dark " name="dt" id="option5" autocomplete="off" {%if val.dtype == "office"%}checked{%endif%}  value="office"  />
                             <label class="btn" for="option5">Office</label>
                             
-                            <input type="radio" class="btn-check" name="dt" id="option6" autocomplete="off" value="home" />
+                            <input type="radio" class="btn-check" name="dt" id="option6" autocomplete="off" value="home" {%if val.dtype == "home"%}checked{%endif%} />
                             <label class="btn" for="option6">Home</label>
                         </div>
                         
@@ -65,21 +65,20 @@
                 
                 <div class="row">
                     <div class="col-md-5 mb-4">
-                        <label class="form-label" for="form3Example1m1">Selected {{val.state}}</label>
                         <select class="form-select" aria-label="Default select example" name="state">
-                            <option  value="kerala">Kerala</option>
-                            <option value="tn">Tamil Nadu</option>
-                            <option value="mumbai">Mumbai</option>
-                            <option value="punjab">Punjab</option>
+                      <label class="form-label text-dark fs-5" for="form3Example1m1">Selected :{{val.dtype}}</label>
+                            <option  value="kerala" {% if val.state == 'Kerala' %}selected{% endif %} >Kerala</option>
+                            <option value="tn" {% if val.state == 'tn' %}selected{% endif %}>Tamil Nadu</option>
+                            <option value="mumbai" {% if val.state == 'mumbai' %}selected{% endif %}>Mumbai</option>
+                            <option value="punjab" {% if val.state == 'punjab' %}selected{% endif %}>Punjab</option>
                         </select>
                     </div>
                     <div class="col-md-5">
-                        <label class="form-label" for="form3Example1m1">Selected {{val.country}}</label>
                         <select class="form-select" aria-label="Default select example" name="country">
-                            <option  value="india">India</option>
-                            <option value="america">America</option>
-                            <option value="jappan">Jappan</option>
-                            <option value="africa">Africa</option>
+                            <option  value="india" {% if val.country == 'india' %}selected{% endif %}>India</option>
+                            <option value="america" {% if val.country == 'america' %}selected{% endif %}>America</option>
+                            <option value="jappan" {% if val.country == 'jappan' %}selected{% endif %}>Jappan</option>
+                            <option value="africa" {% if val.country == 'africa' %}selected{% endif %}>Africa</option>
                         </select>
                       </div>
                     </div>
@@ -89,7 +88,7 @@
                     
                     <div class="d-flex justify-content-end pt-3">
                         <button type="Reset" class="btn btn-dark btn-lg">Reset all</button>
-                        <button type="Submit" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                        <button type="Submit" class="btn btn-warning btn-lg ms-2">Update</button>
                     </div>
                     
                     {% endfor %}
