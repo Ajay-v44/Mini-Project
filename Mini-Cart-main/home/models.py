@@ -33,10 +33,16 @@ class DeliveryAddressAdmin(admin.ModelAdmin):
 
 
 class Products(models.Model):
+    CATEGORY_CHOICES = [
+        ('smartphone', 'smartphone'),
+        ('laptops', 'laptops'),
+        ('smartwatch', 'Smartwatch'),
+        ('earphones', 'Earphones'),
+    ]
     pro_name = models.CharField(max_length=150)
     pro_desc = models.CharField(max_length=250)
     pro_price = models.IntegerField()
-    category = models.CharField(max_length=150)
+    category = models.CharField(max_length=150, choices=CATEGORY_CHOICES)
     pro_brand = models.CharField(max_length=150)
     pro_rating = models.FloatField()
     pro_image = models.ImageField(
@@ -56,6 +62,17 @@ class ProductsAdmin(admin.ModelAdmin):
                     'pro_brand', 'pro_rating', 'is_available', 'pro_image')
     search_fields = ['pro_name']
     list_filter = ['category', 'pro_brand']
+    list_editable = ['category']
+
+    def formfield_for_choice_field(self, db_field, request, **kwargs):
+        if db_field.name == 'category':
+            kwargs['widget'] = forms.Select(choices=[
+                ('smartphone', 'smartphone'),
+                ('laptops', 'laptops'),
+                ('smartwatch', 'Smartwatch'),
+                ('earphones', 'Earphones'),
+            ])
+        return super().formfield_for_choice_field(db_field, request, **kwargs)
 
 
 class Cart(models.Model):
@@ -118,9 +135,9 @@ class Blogs(models.Model):
 
 @admin.register(Blogs)
 class BlogsAdmin(admin.ModelAdmin):
-    list_display = ('username','postedate', 'description','image')
+    list_display = ('username', 'postedate', 'description', 'image')
     search_fields = ['username__username']
-    list_filter = ['postedate','title']
+    list_filter = ['postedate', 'title']
 
 
 class Reviews(models.Model):
@@ -134,9 +151,10 @@ class Reviews(models.Model):
 
 @admin.register(Reviews)
 class ReviewsAdmin(admin.ModelAdmin):
-    list_display = ('username','review', 'postedon')
+    list_display = ('username', 'review', 'postedon')
     search_fields = ['username__username']
     list_filter = ['postedon']
+
 
 class Contactus(models.Model):
     name = models.CharField(max_length=50)
