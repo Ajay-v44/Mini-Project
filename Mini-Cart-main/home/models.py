@@ -174,3 +174,13 @@ class ContactusAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'message',)
     search_fields = ['name']
     list_filter = ['message']
+
+
+class Banners(models.Model):
+    img=models.ImageField(upload_to='uploads', height_field=None, width_field=None, max_length=None)
+
+@admin.register(Banners)
+class BannersAdmin(admin.ModelAdmin):
+    list_display = ('img',)
+    search_fields = ['img']
+    list_filter = ['img']

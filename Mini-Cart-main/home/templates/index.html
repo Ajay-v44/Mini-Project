@@ -7,30 +7,12 @@
       <div class="container pt-3">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
+            {% for bann in banner %}
             <div class="carousel-item active">
-              <img src="https://www.jiomart.com/images/cms/aw_rbslider/slides/1701195084_Bestever_deals_on_earbuds_soundbars_and_more_Desktop.jpg?im=Resize=(1680,320)" class="d-block w-100" height="300vh" alt="..." />
+              <img src="{{bann.img.url}}" class="d-block w-100 rounded" height="300vh" alt="..." />
             </div>
-            <div class="carousel-item">
-              <img src="{% static 'Images/banner2.webp' %}" class="d-block w-100" height="300vh" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'Images/banner3.webp' %}" class="d-block w-100" height="300vh" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'Images/banner4.webp' %}" class="d-block w-100" height="300vh" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'Images/banner5.webp' %}" class="d-block w-100" height="300vh" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'Images/banner6.webp' %}" class="d-block w-100" height="300vh" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'Images/banner7.webp' %}" class="d-block w-100" height="300vh" alt="..." />
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'Images/banner7.jpg' %}" class="d-block w-100" height="300vh" alt="..." />
-            </div>
+            {% endfor %}
+           
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ def index(request):
         category="laptops").filter(pro_rating__gt=4)[:8]
     blog = Blogs.objects.all().order_by('?')[:4]
     review = Reviews.objects.all().order_by('?')
+    banner=Banners.objects.all().order_by('?')
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
@@ -30,7 +31,7 @@ def index(request):
             messages.info(request, 'Sorry Null values are not allowed')
             return redirect(index)
 
-    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog, "review": review})
+    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog, "review": review,"banner":banner})
 
 
 def register(request):
