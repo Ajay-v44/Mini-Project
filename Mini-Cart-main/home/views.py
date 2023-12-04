@@ -15,8 +15,8 @@ def index(request):
     laptop = Products.objects.filter(
         category="laptops").filter(pro_rating__gt=4)[:8]
     blog = Blogs.objects.all().order_by('?')[:4]
-    review=Reviews.objects.all().order_by('?')
-    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog,"review":review})
+    review = Reviews.objects.all().order_by('?')
+    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog, "review": review})
 
 
 def register(request):
@@ -232,10 +232,12 @@ def create_blog(request):
             return redirect(create_blog)
     return render(request, 'createblog.html')
 
+
 @login_required(login_url="/login")
 def my_blogs(request):
     query = Blogs.objects.filter(username_id=request.user)
     return render(request, 'myblogs.html', {"query": query})
+
 
 @login_required(login_url="/login")
 def edit_blogs(request, id):
@@ -244,79 +246,86 @@ def edit_blogs(request, id):
         description = request.POST['description']
 
         if 'images' in request.FILES:
-          image = request.FILES['images']
-          print(image)
+            image = request.FILES['images']
+            print(image)
         else:
-            image=None
-       
+            image = None
 
         if title and description != "":
             if image:
-                query2=Blogs.objects.get(id=id)
-                query2.title=title
-                query2.description=description
-                query2.image=image
+                query2 = Blogs.objects.get(id=id)
+                query2.title = title
+                query2.description = description
+                query2.image = image
                 query2.save()
-               
+
                 messages.info(request, "Blog Updated")
                 return redirect(my_blogs)
             else:
-                 query2=Blogs.objects.get(id=id)
-                 query2.title=title
-                 query2.description=description
-                 
-                 query2.save()
-               
-                 messages.info(request, "Blog Updated")
-                 return redirect(my_blogs)
+                query2 = Blogs.objects.get(id=id)
+                query2.title = title
+                query2.description = description
+
+                query2.save()
+
+                messages.info(request, "Blog Updated")
+                return redirect(my_blogs)
 
         else:
             messages.info(request, "Sorry null vales are not allowed")
             return redirect(create_blog)
     query = Blogs.objects.filter(username_id=request.user).filter(id=id)
     return render(request, 'editblog.html', {"query": query})
+
+
 @login_required(login_url="/login")
-def delete_blog(request,id):
+def delete_blog(request, id):
     Blogs.objects.filter(id=id).delete()
     return redirect(my_blogs)
+
+
 @login_required(login_url='/login')
 def add_review(request):
-   
-    if request.method=="POST":
-      
-        comment=request.POST['comment']
-        if  comment !="":
-            Reviews.objects.create(username=request.user,review=comment)
+
+    if request.method == "POST":
+
+        comment = request.POST['comment']
+        if comment != "":
+            Reviews.objects.create(username=request.user, review=comment)
             return redirect(index)
+
+
 def all_blogs(request):
-    blog=Blogs.objects.all().order_by('?')
-    return render (request,'allblogs.html',{'blog':blog})
+    blog = Blogs.objects.all().order_by('?')
+    return render(request, 'allblogs.html', {'blog': blog})
+
 
 @login_required(login_url='/login')
 def update_address(request):
 
-    if request.method=="POST":
-        
-            mob = request.POST['mob']
-            alt_mob = request.POST['altermob']
-            pincode = request.POST['pincode']
-            address = request.POST.get('address')
-            state = request.POST.get('state')
-            country = request.POST.get('country')
-            dt=request.POST.get('dt')
-            
-            DeliveryAddress.objects.filter(username_id=request.user).update( mobile=mob,
-                        altmob=alt_mob,
-                        pincode=pincode,
-                        address=address,
-                        dtype=dt,
-                        state=state,
-                        country=country)
-            messages.info(request,'Details Updated Successfully')
-           
-                
-            
-           
-    query=DeliveryAddress.objects.filter(username_id=request.user)
+    if request.method == "POST":
 
-    return render(request,'updateadd.html',{"query":query})
+        mob = request.POST['mob']
+        alt_mob = request.POST['altermob']
+        pincode = request.POST['pincode']
+        address = request.POST.get('address')
+        state = request.POST.get('state')
+        country = request.POST.get('country')
+        dt = request.POST.get('dt')
+
+        DeliveryAddress.objects.filter(username_id=request.user).update(mobile=mob,
+                                                                        altmob=alt_mob,
+                                                                        pincode=pincode,
+                                                                        address=address,
+                                                                        dtype=dt,
+                                                                        state=state,
+                                                                        country=country)
+        messages.info(request, 'Details Updated Successfully')
+
+    query = DeliveryAddress.objects.filter(username_id=request.user)
+
+    return render(request, 'updateadd.html', {"query": query})
+@login_required(login_url='/login')
+def myaddress(request):
+    query=DeliveryAddress.objects.filter(username_id=request.user)
+    return render (request,'myaddress.html',{"query":query})

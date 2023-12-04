@@ -1,0 +1,31 @@
+{% extends "accounts.html" %}
+{% block content2 %}
+{% for val in query  %}
+<div class="d-flex justify-content-center">
+    <div class="card text-center mt-4 bg-dark text-light w-50 shadow-lg font-monospace">
+        <div class="card-header">
+            <i class="bi bi-house-up px-2"></i><u>Current Address</u>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title text-capitalize">Name : {{request.user}}</h5>
+          
+          <h4> Pin : {{val.pincode}} </h4>
+          <h4>State : {{val.state}} </h4>
+          <h5> <i class="bi bi-globe-americas text-primary"></i> Country : {{val.country}}</h5>
+        </div>
+        <div class="card-footer text-body-secondary">
+            <h4>Deliver At <i class="bi bi-building-check"></i> / <i class="bi bi-house-door"></i> :{{val.dtype}} </h4>
+        
+        </div>
+        <div class="d-block g-4">
+            <h4> <i class="bi bi-phone text-success "></i>Phone1 : {{val.mobile}} </h4>
+          <h4> <i class="bi bi-phone text-success"></i>Phone2 : {{val.altmob}} </h4>
+      </div>
+        <h4 class="card-text mb-2"><i class="bi bi-geo-alt"></i>Address :{{val.address}}</h4>
+    
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock content2 %}
