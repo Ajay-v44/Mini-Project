@@ -50,3 +50,7 @@ class Blogs(models.Model):
     image=models.ImageField(upload_to='uploads')
     def __str__(self) :
         return f"{self.title}"
+class Reviews(models.Model):
+    username=models.ForeignKey(User, on_delete=models.CASCADE)
+    review=models.TextField()
+    postedon=models.DateField(  auto_now_add=True)
