@@ -43,6 +43,7 @@ urlpatterns = [
     path('allblogs/', all_blogs, name='allblogs'),
     path('updatedelivery/',update_address,name='updatedelivery'),
     path('myaddress/',myaddress,name='myaddress'),
+    path('search/',search_items,name='search')
     
     
 

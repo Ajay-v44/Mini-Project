@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="">
+    <div class="row container ">
+      {% for val in query %}
+        <div class="col-lg-12 d-flex justify-content-center mt-3 item">
+          <div class="card mb-3 h-100 shadow-lg" style="width: 740px;">
+            <div class="row g-0">
+              {% if val.pro_image %}
+                <div class="col-md-4">
+                  <img src="{{ val.pro_image.url }}" class="img-fluid rounded-start" alt="..." style="padding: 10px;" />
+                </div>
+              {% else %}
+                <div class="col-md-4 d-flex align-items-center ">
+                  <img src="https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg" class="img-thumbnail rounded-start " alt="..." style="object-fit: cover;" />
+                </div>
+              {% endif %}
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ val.pro_name }}</h5>
+                  <p class="card-text">{{ val.pro_desc }}</p>
+                  <p>
+                    {% if val.pro_rating > 3.5 %}
+                      <i class="bi bi-star-fill text-success"></i>
+                    {% else %}
+                      <i class="bi bi-star-fill text-danger"></i>
+                    {% endif %}{{ val.pro_rating }}
+                  </p>
+                  <p>Brand :{{ val.pro_brand }}</p>
+                  <p>
+                    Available{% if val.is_available %}
+                      <p class="text-success">In Stock</p>
+                    {% else %}
+                      <p class="text-danger">Out Of Stock</p>
+                    {% endif %}
+                  </p>
+                  <p class="card-text">
+                    <small class="text-body-secondary">RS {{ val.pro_price }}</small>
+                  </p>
+                </div>
+                <div class="d-block">
+                  <a class="btn btn-warning" href="{% url 'add_cart' val.pro_name %}"><i class="bi bi-bag-check-fill"></i>Add To Cart</a>
+                  {% if val.is_available %}
+                  <a class="btn btn-success" href="{% url 'billing' val.id %}"><i class="bi bi-cash"></i>Buy Now</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+   </div>
+
+{% endblock content %}
