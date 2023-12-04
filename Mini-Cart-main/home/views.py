@@ -291,3 +291,8 @@ def add_review(request):
 def all_blogs(request):
     blog=Blogs.objects.all().order_by('?')
     return render (request,'allblogs.html',{'blog':blog})
+
+@login_required(login_url='/login')
+def update_address(request):
+    query=DeliveryAddress.objects.filter(username_id=request.user)
+    return render(request,'updateadd.html',{"query":query})
