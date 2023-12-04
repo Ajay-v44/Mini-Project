@@ -63,8 +63,16 @@ class Cart(models.Model):
     item_name = models.CharField(max_length=50)
     item_price = models.IntegerField()
 
-    def __str__(self):
-        return f"{self.username}"
+    class Meta:
+        db_table = 'Cart'
+
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('username', 'item_name', 'item_price',)
+    # Assuming 'username' is a ForeignKey to User
+    search_fields = ['username__username']
+    list_filter = ['item_name']
 
 
 class DeliverProducts(models.Model):
@@ -104,8 +112,15 @@ class Blogs(models.Model):
     description = models.CharField(max_length=150)
     image = models.ImageField(upload_to='uploads')
 
-    def __str__(self):
-        return f"{self.title}"
+    class Meta:
+        db_table = 'Blogs'
+
+
+@admin.register(Blogs)
+class BlogsAdmin(admin.ModelAdmin):
+    list_display = ('username','postedate', 'description','image')
+    search_fields = ['username__username']
+    list_filter = ['postedate','title']
 
 
 class Reviews(models.Model):
@@ -113,9 +128,15 @@ class Reviews(models.Model):
     review = models.TextField()
     postedon = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.review}"
+    class Meta:
+        db_table = 'Reviews'
 
+
+@admin.register(Reviews)
+class ReviewsAdmin(admin.ModelAdmin):
+    list_display = ('username','review', 'postedon')
+    search_fields = ['username__username']
+    list_filter = ['postedon']
 
 class Contactus(models.Model):
     name = models.CharField(max_length=50)
