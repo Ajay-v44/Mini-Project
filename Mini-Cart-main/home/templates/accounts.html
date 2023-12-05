@@ -53,10 +53,11 @@
     </div>
     {% block content2 %}
     {% if query %}
-    <table class="table table-dark ">
+    <table class="table table-dark  ">
       <thead>
         <tr>
           <th scope="col">No of items</th>
+          <th scope="col">Product Image</th>
           <th scope="col">Product Name</th>
           <th scope="col">Price</th>
           <th scope="col">
@@ -72,14 +73,23 @@
         {% for val in query %}
           <tr>
             <th scope="row">{{ forloop.counter }}</th>
+            <td><img src="{{ val.product.pro_image.url }}" alt="" class="card w-25 h-25 border-danger w3-hover-grayscale"></td>
             <td>{{ val.item_name }}</td>
+         
             <td>{{ val.item_price }}</td>
             <td>
-              <a href="{% url 'remove' val.id %}"><i class="bi bi-x-circle-fill text-danger"></i></a>
+              <a href="{% url 'remove' val.id %}" onclick="confirm()" ><i class="bi bi-x-circle-fill text-danger"></i></a>
             </td>
-            <td>
-              <a class="btn btn-warning btn-sm" href="{% url "billing" val.product_id%}">Buy Now</a>
-            </td>
+        
+           {% if val.product.is_available %}
+           <td>
+            <a class="btn btn-warning btn-sm" href="{% url "billing" val.product_id%}">Buy Now</a>
+          </td>
+          {% else %}
+          <td>
+            <button class="w3-button w3-ripple w3-yellow rounded">Comming Soon</button>
+          </td>
+           {% endif %}
           </tr>
         {% endfor %}
       </tbody>
@@ -93,5 +103,13 @@
 {% endblock content2 %}
 
 
-  </div>
+
+</div>
+
+<script>
+
+  function confirm(){
+    alert('item deleted');
+  }
+</script>
 {% endblock %}

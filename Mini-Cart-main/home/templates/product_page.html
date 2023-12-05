@@ -39,7 +39,7 @@
                 </p>
               </div>
               <div class="d-block">
-                <a class="btn btn-warning" href="{% url 'add_cart' val.pro_name %}"><i class="bi bi-bag-check-fill"></i>Add To Cart</a>
+                <a class="btn btn-warning" href="{% url 'add_cart' val.pro_name %}"><i class="bi bi-bag-check-fill" onclick="itemadd()" ></i>Add To Cart</a>
                 {% if val.is_available %}
                 <a class="btn btn-success" href="{% url 'billing' val.id %}"><i class="bi bi-cash"></i>Buy Now</a>
                 {% endif %}
@@ -51,4 +51,9 @@
     {% endfor %}
   </div>
  </div>
+ <script>
+  function itemadd(){
+    alert("Added To Cart");
+  }
+ </script>
 {% endblock %}
