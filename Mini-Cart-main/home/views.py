@@ -158,13 +158,13 @@ def add_cart(request, item):
     product = get_object_or_404(Products, pro_name=item)
     if product:
         query2 = Cart.objects.create(
-            username=request.user, item_name=product.pro_name,product_id=product.id, item_price=product.pro_price)
+            username=request.user, item_name=product.pro_name, product_id=product.id, item_price=product.pro_price)
     return redirect(account)
 
 
 @login_required(login_url='/login')
 def account(request):
-    
+
     query = Cart.objects.filter(username=request.user)
     return render(request, 'accounts.html', {"query": query})
 
@@ -370,11 +370,21 @@ def checkoutall(request):
         query = Cart.objects.filter(username_id=request.user)
         for val in query:
             query2 = get_object_or_404(Products, pro_name=val.item_name)
-            totalamount = int(quantity)*int(val.item_price)
-            DeliverProducts.objects.create(username=request.user, product=query2, quantity=int(
-                quantity), paymentmod="COD", total_amount=totalamount, deliveron=deliveron)
-            messages.info(
+
+            totalamount = int(quantity) * int(val.item_price)
+
+            DeliverProducts.objects.create(
+                username=request.user,
+                product=query2,
+                quantity=int(quantity),
+                paymentmod="COD",
+                total_amount=totalamount,
+                deliveron=deliveron
+            )
+
+            val.delete()
+        messages.info(
                 request, "Succesfully Ordered .You will receive products on selected date")
-            return redirect(ordered_products)
+        return redirect(ordered_products)
 
     return render(request, 'cartbilling.html')

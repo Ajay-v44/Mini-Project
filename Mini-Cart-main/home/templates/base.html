@@ -15,6 +15,9 @@
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{% static 'css/contact.css' %}" rel="stylesheet" />
     <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/footer.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/adcard.css' %}" rel="stylesheet" />
+
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
@@ -69,7 +72,7 @@
             <form class="form-inline waves-effect waves-light d-flex" method="get"  action="{% url "search" %}" >
               {% csrf_token %}
               <div class="input-group align-items-center ">
-                <input type="text" class="form-control text-dark" placeholder="Search Products" aria-label="Recipient's username" aria-describedby="button-addon2" name="name">
+                <input type="text" class="form-control text-dark" placeholder="Search Products" aria-label="Recipient's username" aria-describedby="button-addon2" name="name" required>
                 <button class="btn" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
               </div>
               
@@ -85,112 +88,49 @@
     {% endblock %}
 
     <!-- Footer -->
-    <footer class="page-footer center-on-small-only">
-      <!-- Footer Links -->
-      <div class="container-fluid">
-        <div class="row">
-          <!-- First column -->
-          <div class="col-md-3 offset-lg-1 hidden-lg-down">
-            <h5 class="title">ABOUT Mini-Cart</h5>
-            <p>Mini-Cart Private Limited</p>
-
-            <p>Minicart E-commerce</p>
-          </div>
-          <!-- /.First column -->
-
-          <hr class="hidden-md-up" />
-
-          <!-- Second column -->
-          <div class="col-lg-2 col-md-4 offset-lg-1">
-            <h5 class="title">About us</h5>
-            <ul>
-              <li>
-                <a href="#!">Adress</a>
-              </li>
-              <li>
-                <a href="#!">Team</a>
-              </li>
-              <li>
-                <a href="#!">Phone number</a>
-              </li>
-            </ul>
-          </div>
-          <!-- /.Second column -->
-
-          <hr class="hidden-md-up" />
-
-          <!-- Third column -->
-          <div class="col-lg-2 col-md-4">
-            <h5 class="title">Metrics</h5>
-            <ul>
-              <li>
-                <a href="#!">Mobiles</a>
-              </li>
-              <li>
-                <a href="#!">Laptops</a>
-              </li>
-              <li>
-                <a href="#!">Ear Phones</a>
-              </li>
-              <li>
-                <a href="#!">Smart Watches</a>
-              </li>
-            </ul>
-          </div>
-          <!-- /.Third column -->
-
-          <hr class="hidden-md-up" />
-
-          <!-- Fourth column -->
-          <div class="col-lg-2 col-md-4">
-            <h5 class="title">Useful links</h5>
-            <ul>
-              <li>
-                <a href="#!">Pricing</a>
-              </li>
-              <li>
-                <a href="#!">Delivery</a>
-              </li>
-              <li>
-                <a href="#!">Countries</a>
-              </li>
-              <li>
-                <a href="#!">Returns</a>
-              </li>
-            </ul>
-          </div>
-          <!-- /.Fourth column -->
-        </div>
-      </div>
-      <!-- /.Footer Links -->
-
-      <hr />
-
-      <!-- Call to action -->
-      <div class="call-to-action">
-        <h4>Created By Minicart</h4>
-        <br />
-        <h5>The best products available in market</h5>
-        <ul>
-          <li>
-            <a target="_blank" href="http://mdbootstrap.com/getting-started/" class="btn btn-info">Buy now!</a>
-          </li>
-          <li>
-            <a target="_blank" href="http://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-default">Learn more</a>
-          </li>
-        </ul>
-      </div>
-      <!-- /.Call to action -->
-
-      <!-- Copyright -->
-      <div class="footer-copyright">
-        <div class="container-fluid">
-          © 2023 Copyright: <a href="http://www.MDBootstrap.com">Mini.com</a>
-        </div>
-      </div>
-      <!-- /.Copyright -->
-    </footer>
+   <footer class="footer ">
+		<div class="container row" >
+			<div class="footer-col col">
+				<h4>company</h4>
+				<ul>
+					<li><a href="#">about us</a></li>
+					<li><a href="#">our services</a></li>
+					<li><a href="#">privacy policy</a></li>
+					<li><a href="#">visit website</a></li>
+				</ul>
+			</div>
+			<div class="footer-col col">
+				<h4>get help</h4>
+				<ul>
+					<li><a href="#">FAQ</a></li>
+					<li><a href="#">shipping</a></li>
+					<li><a href="#">returns</a></li>
+					<li><a href="#">order status</a></li>
+					<li><a href="#">payment options</a></li>
+				</ul>
+			</div>
+			<div class="footer-col col">
+				<h4>online shop</h4>
+				<ul>
+					<li><a href="#">download</a></li>
+					<li><a href="#">changelog</a></li>
+					<li><a href="#">github</a></li>
+					<li><a href="#">all version</a></li>
+				</ul>
+			</div>
+			<div class="footer-col col">
+				<h4>follow us</h4>
+				<div class="social-links">
+					<a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+					<a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+					<a href="#"><i class="fa-brands fa-instagram"></i></a>
+					<a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
     <!-- /.Footer -->
+    <script src="https://kit.fontawesome.com/3b161c540c.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="container">
+  <div class="container mb-5 mt-2">
     <ul class="nav justify-content-end">
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="{% url 'account' %}">Account</a>
@@ -85,9 +85,11 @@
       </tbody>
     </table>
 
+    {% if query %}
     <div class="d-grid gap-2 col-6 mx-auto">
       <a class="btn btn-outline-primary font-effect-shadow-multiple" href="{% url "checkoutall" %}" >Checkout <i class="bi bi-bag-heart"></i></a>
     </div>
+    {% endif %}
 {% endblock content2 %}
 
 

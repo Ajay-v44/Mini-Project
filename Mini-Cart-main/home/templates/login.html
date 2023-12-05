@@ -33,13 +33,13 @@
                 {% csrf_token %}
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example3" class="form-control" name="uname" required />
+                  <input type="text" id="form3Example3" class="form-control" name="uname" required  minlength="2" />
                   <label class="form-label" for="form3Example3">User Name</label>
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4" class="form-control" name="password" required />
+                  <input type="password" id="form3Example4" class="form-control" name="password" required  minlength="2"/>
                   <label class="form-label" for="form3Example4">Password</label>
                 </div>
 
