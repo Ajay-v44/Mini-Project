@@ -12,7 +12,7 @@
       </ul>
    {% block content3 %}
    
-   <form action="" method="post" class="p-5 rounded shadow-lg mt-5" enctype="multipart/form-data">
+   <form action="" method="post" name="blogform" class="p-5 rounded shadow-lg mt-5" enctype="multipart/form-data" onsubmit="return blogForm()" >
     {% csrf_token %}
     <div class="form-floating mb-3">
         <input type="text" class="form-control" id="floatingInput" placeholder="" required name="title" minlength="10" >

@@ -14,6 +14,9 @@ const validatePassword = (password) => {
   );
 };
 
+
+//Register user
+
 function registerForm() {
   var fname = document.forms["myforms"]["fname"].value;
   var lname = document.forms["myforms"]["lname"].value;
@@ -54,4 +57,21 @@ function registerForm() {
   }
 
   return true;
+}
+
+// Add Blogs
+
+function blogForm() {
+    var title = document.forms["blogform"]["title"].value;
+    var description=document.forms["blogform"]['description'].value;
+    if (!checkWhitespace(title)) {
+      alert("Title cannot be empty");
+      return false;
+    }
+    if (!checkWhitespace(description)) {
+        alert("description  cannot be empty");
+        return false;
+      }
+
+    return true;
 }
