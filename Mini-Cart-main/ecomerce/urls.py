@@ -29,7 +29,7 @@ urlpatterns = [
     path('add_cart/<str:item>', add_cart, name="add_cart"),
     path('account/', account, name="account"),
     path('remove/<int:id>', remove_cart, name="remove"),
-    path('billing/<int:id>', billing, name='billing'),
+    path('billing/<int:id>/', billing, name='billing'),
     path('orderedproducts/', ordered_products, name='orderedproducts'),
     path(' cancelorder/<int:id>', cancel_order, name=' cancelorder'),
     path('cancelledview/', cancelled_view, name='cancelledview'),
@@ -43,7 +43,8 @@ urlpatterns = [
     path('allblogs/', all_blogs, name='allblogs'),
     path('updatedelivery/',update_address,name='updatedelivery'),
     path('myaddress/',myaddress,name='myaddress'),
-    path('search/',search_items,name='search')
+    path('search/',search_items,name='search'),
+    path('checkoutall/',checkoutall,name='checkoutall')
     
     
 

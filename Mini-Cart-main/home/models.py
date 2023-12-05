@@ -77,6 +77,7 @@ class ProductsAdmin(admin.ModelAdmin):
 
 class Cart(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
+    product=models.ForeignKey(Products, verbose_name=(""), on_delete=models.CASCADE)
     item_name = models.CharField(max_length=50)
     item_price = models.IntegerField()
 
@@ -86,10 +87,10 @@ class Cart(models.Model):
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
-    list_display = ('username', 'item_name', 'item_price',)
+    list_display = ('username', 'item_name', 'item_price','product')
     # Assuming 'username' is a ForeignKey to User
-    search_fields = ['username__username']
-    list_filter = ['item_name']
+    search_fields = ['username__username','product__product','product']
+    list_filter = ['item_name','product']
 
 
 class DeliverProducts(models.Model):

@@ -78,12 +78,16 @@
               <a href="{% url 'remove' val.id %}"><i class="bi bi-x-circle-fill text-danger"></i></a>
             </td>
             <td>
-              <a class="btn btn-warning btn-sm" href="{% url "billing" val.id %}">Buy Now</a>
+              <a class="btn btn-warning btn-sm" href="{% url "billing" val.product_id%}">Buy Now</a>
             </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <a class="btn btn-outline-primary font-effect-shadow-multiple" href="{% url "checkoutall" %}" >Checkout <i class="bi bi-bag-heart"></i></a>
+    </div>
 {% endblock content2 %}
 
 

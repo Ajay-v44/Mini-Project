@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="" method="post" class="container m-5 shadow-lg rounded px-5 pt-3 pb-3">
+{% csrf_token %}
+
+  
+        <input type="number" class="form-control w-75" id="floatingInput"  name="quantity" placeholder="quantity" min="1" required>
+       
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked disabled name="cod" value="cod">
+        <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Cash On Delivery</label>
+        <input type="date" class="form-control w-75" id="floatingInput"  name="deliveron" placeholder="Deliver On"  required> <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Deliver On</label>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+      
+        <button class="btn btn-primary" type="submit">Confirm</button>
+      </div>
+</form>
+
+
+
+
+{% endblock content %}

@@ -16,7 +16,7 @@ def index(request):
         category="laptops").filter(pro_rating__gt=4)[:8]
     blog = Blogs.objects.all().order_by('?')[:4]
     review = Reviews.objects.all().order_by('?')
-    banner=Banners.objects.all().order_by('?')
+    banner = Banners.objects.all().order_by('?')
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
@@ -31,7 +31,7 @@ def index(request):
             messages.info(request, 'Sorry Null values are not allowed')
             return redirect(index)
 
-    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog, "review": review,"banner":banner})
+    return render(request, 'index.html', {"mobiles": mobiles, "laptop": laptop, "blog": blog, "review": review, "banner": banner})
 
 
 def register(request):
@@ -158,12 +158,13 @@ def add_cart(request, item):
     product = get_object_or_404(Products, pro_name=item)
     if product:
         query2 = Cart.objects.create(
-            username=request.user, item_name=product.pro_name, item_price=product.pro_price)
+            username=request.user, item_name=product.pro_name,product_id=product.id, item_price=product.pro_price)
     return redirect(account)
 
 
 @login_required(login_url='/login')
 def account(request):
+    
     query = Cart.objects.filter(username=request.user)
     return render(request, 'accounts.html', {"query": query})
 
@@ -184,11 +185,13 @@ def billing(request, id):
         query = get_object_or_404(Products, id=id)
 
         proprice = query.pro_price
+        proname = query.pro_name
 
         totalamount = int(proprice)*int(quantity)
 
         query2 = DeliverProducts.objects.create(username=request.user, product=query, quantity=int(
             quantity), paymentmod="COD", total_amount=totalamount, deliveron=deliveron)
+        Cart.objects.filter(item_name=proname).delete()
         messages.info(
             request, "Succesfully Ordered .You will receive product on selected date")
         return redirect(ordered_products)
@@ -349,12 +352,29 @@ def myaddress(request):
 
 
 def search_items(request):
-   try:
+    try:
         if request.method == "GET":
             name = request.GET.get('name')
             query = Products.objects.filter(Q(pro_name__icontains=name) | Q(pro_desc__icontains=name) | Q(
                 pro_brand__icontains=name) | Q(category__icontains=name) | Q(pro_price__icontains=name))
             return render(request, 'search.html', {"query": query})
-   except Exception as e:
+    except Exception as e:
         print(f"An error occurred: {e}")
         return redirect(index)
+
+
+def checkoutall(request):
+    if request.method == "POST":
+        quantity = request.POST.get('quantity')
+        deliveron = request.POST['deliveron']
+        query = Cart.objects.filter(username_id=request.user)
+        for val in query:
+            query2 = get_object_or_404(Products, pro_name=val.item_name)
+            totalamount = int(quantity)*int(val.item_price)
+            DeliverProducts.objects.create(username=request.user, product=query2, quantity=int(
+                quantity), paymentmod="COD", total_amount=totalamount, deliveron=deliveron)
+            messages.info(
+                request, "Succesfully Ordered .You will receive products on selected date")
+            return redirect(ordered_products)
+
+    return render(request, 'cartbilling.html')

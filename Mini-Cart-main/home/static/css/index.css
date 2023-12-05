@@ -1,55 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dhurjati&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dhurjati&display=swap');
-
-*{
-  background-color: linear-gradient(180deg,#fde1ff , #e1ffea22 60%);
+* {
+  background-color: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
 }
 main {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-  
-  }
-  
-  .widget-wrapper {
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 2rem;
-  }
-  
-  .extra-margins {
-    margin-top: 1rem;
-    margin-bottom: 2.5rem;
-  }
-  
-  .divider-new {
-    margin-top: 0;
-  }
-  
-  .navbar {
-    background-color: #17b076;
-    color: black;
-  }
-  
-  footer.page-footer {
-    background-color: #414a5c;
-    margin-top: 2rem;
-  }
-.popular-card{
-
+  padding-top: 3rem;
+  padding-bottom: 2rem;
 }
-.popular-img{
+
+.widget-wrapper {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 2rem;
+}
+
+.extra-margins {
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.divider-new {
+  margin-top: 0;
+}
+
+.navbar {
+  background-color: #17b076;
+  color: black;
+}
+
+footer.page-footer {
+  background-color: #414a5c;
+  margin-top: 2rem;
+}
+
+.popular-img {
   padding-left: 50px;
   justify-content: center;
-  height: 500px!important;
+  height: 500px !important;
   width: 200px;
 }
-.item:hover{
+.item:hover {
   transform: scale(1.05);
   transition: 0.6s;
 }
-.popular{
-  font-family: 'Dhurjati', sans-serif;
+.popular {
+  font-family: "Dhurjati", sans-serif;
 }
 /* Default styles for smaller screens */
 /* Add your default styles here */
@@ -57,7 +53,7 @@ main {
 /* Responsive styles for screens larger than or equal to 480px */
 @media screen and (min-width: 480px) {
   /* Add your styles for screens >= 480px here */
-  .popular-card-lap{
+  .popular-card-lap {
     height: 25vw;
   }
 }
@@ -70,7 +66,7 @@ main {
 /* Responsive styles for screens larger than or equal to 992px */
 @media screen and (min-width: 992px) {
   /* Add your styles for screens >= 992px here */
-  .popular-card-lap{
+  .popular-card-lap {
     height: 25vw;
   }
 }
@@ -78,8 +74,10 @@ main {
 /* Responsive styles for screens larger than or equal to 1200px */
 @media screen and (min-width: 1200px) {
   /* Add your styles for screens >= 1200px here */
- 
 }
-.div-blogs{
- background:  linear-gradient(180deg,#fde1ff,#e1ffea22 60%);
+.div-blogs {
+  background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
+}
+.w3-lobster {
+  font-family: "Lobster", Sans-serif;
 }
