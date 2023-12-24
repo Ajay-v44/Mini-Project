@@ -66,7 +66,7 @@ Mini Cart is a feature-rich e-commerce website built using HTML, CSS, JavaScript
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/mini-cart.git
+   git clone https://github.com/Ajay-v44/mini-cart.git
    ```
 
 2. Install dependencies:
