@@ -1,4 +1,4 @@
-![Screenshot (224)](https://github.com/Ajay-v44/Mini-Project/assets/115262085/62ee0f5c-ab78-46e2-bfd1-f55f973523f8)# Mini Cart - E-commerce Website
+# Mini Cart - E-commerce Website
 
 ## Introduction
 Mini Cart is a feature-rich e-commerce website built using HTML, CSS, JavaScript, and Bootstrap for the frontend, Python Django for the backend, Sqlite3 as the database, and GitHub for version control. The website includes a shopping cart, product catalog, user authentication, and a blog section for enhanced user interactions.
@@ -47,7 +47,7 @@ Mini Cart is a feature-rich e-commerce website built using HTML, CSS, JavaScript
 
 
 
-![Screenshot (222)](https://github.com/Ajay-v![Screenshot (223)](https://github.com/Ajay-v44/Mini-Project/assets/115262085/0431d3ab-8d12-4eb2-8bd7-d6c234b5130c)
+![Screenshot (223)](https://github.com/Ajay-v44/Mini-Project/assets/115262085/0431d3ab-8d12-4eb2-8bd7-d6c234b5130c)
 
 
 ![Screenshot (222)](https://github.com/Ajay-v44/Mini-Project/assets/115262085/e6af6951-e0e5-4e80-be96-163ccfaacc78)
