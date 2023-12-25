@@ -1,5 +1,5 @@
 # Mini Cart - E-commerce Website
-##Live At : https://minicart-production.up.railway.app/
+## Live At : https://minicart-production.up.railway.app/
 
 ## Introduction
 Mini Cart is a feature-rich e-commerce website built using HTML, CSS, JavaScript, and Bootstrap for the frontend, Python Django for the backend, Sqlite3 as the database, and GitHub for version control. The website includes a shopping cart, product catalog, user authentication, and a blog section for enhanced user interactions.
